@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const cities = require('./cities');
-const {places, descriptors} = require('./seedHelpers')
-const Campground = require("../models/campground")
+const {places, descriptors} = require('./seedHelpers');
+const Campground = require("../models/campground");
 
 mongoose.connect('mongodb+srv://mus-admin:Password1@cluster0.mu9ks.mongodb.net/seeDB?retryWrites=true&w=majority', {
     useNewUrlParser: true,

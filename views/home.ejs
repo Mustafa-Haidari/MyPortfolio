@@ -727,6 +727,29 @@
 
         </section>
 
+        
+        <!--==================== COMMENTS ====================-->
+        <section class="comment section">
+            <h2 class="section__title">Comments</h2>
+            <span class="section__subtitle">My visitors comments</span>
+
+            <div class="comment__container container grid">
+                <i class="uil uil-comment-alt-notes comment__icon"></i>
+                    <ul class="comment__list">
+                        <% messages.forEach((message) => { %>
+                        <li>
+                            <div class="comment__item">
+                                <h4 class="comment__item-name"><%= message.name %> - <%= message.email %></h4>
+                                <h4 class="comment__item-project"><%= message.project %></h4>
+                                <p class="comment__item-message"><i class="uil uil-comment-alt-notes comment__icon-each"></i> <%= message.message %></p>
+                            </div>
+                        </li>
+                        <% }) %>
+                    </ul>
+            </div>
+        </section>
+
+
         <!--==================== CONTACT ME ====================-->
         <section class="contact section" id="contactme">
             <h2 class="section__title">Contact Me</h2>

@@ -28,7 +28,15 @@ app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', (req, res) => {
-    res.render('home')
+    Message.find({}, (err, allMessages) => {
+        if(err) {
+            console.log(err);
+        } else{
+            res.render('home', {messages: allMessages});
+        }
+    })
+    
+    
 })
 app.post('/', async (req, res) => {
 	req.body.message = req.sanitize(req.body.message);
