@@ -3,6 +3,7 @@ const path = require('path');
 const expressSanitizer = require("express-sanitizer");
 const mongoose = require('mongoose');
 const Message = require("./models/message")
+const Comment = require("./models/comment")
 
 mongoose.connect('mongodb+srv://mus-admin:Password1@cluster0.mu9ks.mongodb.net/portfolioMessages?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -28,17 +29,15 @@ app.use(express.static(__dirname + "/public"));
 
 
 app.get('/', (req, res) => {
-    Message.find({}, (err, allMessages) => {
+    Comment.find({}, (err, allComments) => {
         if(err) {
             console.log(err);
         } else{
-            res.render('home', {messages: allMessages});
+            res.render('home', {comments: allComments});
         }
     })
-    
-    
 })
-app.post('/', async (req, res) => {
+app.post('/contact', async (req, res) => {
 	req.body.message = req.sanitize(req.body.message);
     const newMessage = new Message({
         name: req.body.name,
@@ -47,7 +46,21 @@ app.post('/', async (req, res) => {
         message: req.body.message
     });
     await newMessage.save();
-    res.send("Your message was submitted. <a href='/'>Home</a>")
+    res.render('contact', {name: req.body.name})
+})
+
+app.post('/comment', async (req, res) => {
+	req.body.commentMessage = req.sanitize(req.body.commentMessage);
+    const newComment = new Comment({
+        name: req.body.commentName,
+        message: req.body.commentMessage
+    });
+    await newComment.save();
+    res.redirect('/')
+})
+
+app.get('*', (req, res) => {
+    res.render('notfound');
 })
 
 var port = process.env.PORT || 3000;
