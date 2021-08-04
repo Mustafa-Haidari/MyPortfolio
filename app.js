@@ -62,7 +62,8 @@ app.post('/contact', async (req, res) => {
         to: 'mhaidarpoor@gmail.com',
         cc: email,
         subject: project,
-        text: message
+        html: "From: "+newMessage.name+"<br>Project: "+project+ 
+        "<br>Email: "+email+"<br>-----------------<br><br>"+ message
     }
 
     transporter.sendMail(mailOption, (err, data) => {
