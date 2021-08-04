@@ -7,21 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/blogs" method="post">
+    <form action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
         <div>
             <label for="name">name</label>
-            <input type="text" id="name" name="blog[name]">
+            <input type="text" id="name" name="blog[name]" value="<%= blog.name %>">
         </div>
         <div>
         <div>
             <label for="title">title</label>
-            <input type="text" id="title" name="blog[title]">
+            <input type="text" id="title" name="blog[title]" value="<%= blog.title %>">
         </div>
         <div>
             <label for="body">description</label>
-            <textarea type="text" id="body" name="blog[body]" cols="30" rows="10"></textarea>
+            <textarea type="text" id="body" name="blog[body]" cols="30" rows="10"><%= blog.body %></textarea>
         </div>
-        <button>Add Blog</button>
+        <button>Update Blog</button>
     </form>
+    <a href="/blogs/<%= blog._id %>">Back to Blog</a>
 </body>
 </html>

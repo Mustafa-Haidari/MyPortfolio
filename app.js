@@ -2,17 +2,19 @@ const express = require('express');
 const path = require('path');
 const expressSanitizer = require("express-sanitizer");
 const mongoose = require('mongoose');
-const Message = require("./models/message")
-const Blog = require("./models/blog")
-const Comment = require("./models/comment")
-const nodemailer = require("nodemailer")
+const Message = require("./models/message");
+const Blog = require("./models/blog");
+const Comment = require("./models/comment");
+const nodemailer = require("nodemailer");
+const methodOverride = require("method-override");
 require('dotenv').config();
 
 
 mongoose.connect('mongodb+srv://mus-admin:Password1@cluster0.mu9ks.mongodb.net/portfolioMessages?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }).then(() => {
     console.log("connected to db")
 }).catch(err => {
@@ -27,7 +29,9 @@ app.set('view engine', 'ejs')
 app.use(expressSanitizer())
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride('_method'));
 
+// setup Gmail server for emailing
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -57,6 +61,7 @@ app.post('/contact', async (req, res) => {
     const message = newMessage.message;
     await newMessage.save();
     
+    // emailing the contact to myself
     let mailOption = {
         from: 'musshaidari@gmail.com',
         to: 'mhaidarpoor@gmail.com',
@@ -65,7 +70,6 @@ app.post('/contact', async (req, res) => {
         html: "From: "+newMessage.name+"<br>Project: "+project+ 
         "<br>Email: "+email+"<br>-----------------<br><br>"+ message
     }
-
     transporter.sendMail(mailOption, (err, data) => {
         if(err){
             console.log(err)
@@ -74,7 +78,7 @@ app.post('/contact', async (req, res) => {
         }
     })
 
-    res.render('contact', {name: req.body.name})
+    res.render('contact', {name: req.body.contact.name})
 
 })
 
@@ -117,7 +121,6 @@ app.post('/blogs', async (req, res) => {
 	req.body.blog.body = req.sanitize(req.body.blog.body);
     const newBlog = new Blog(req.body.blog);
     await newBlog.save();
-    console.log(req.params.id)
     res.redirect('/blogs')
 })
 
@@ -133,7 +136,7 @@ app.get('/blogs/:id', async (req, res) => {
 })
 
 
-// ---------- GET SHOW
+// ---------- GET EDIT
 app.get('/blogs/:id/edit', async (req, res) => {
     Blog.findById(req.params.id, (err, blog) => {
         if(err){
@@ -142,6 +145,20 @@ app.get('/blogs/:id/edit', async (req, res) => {
             res.render('blogs/edit', {blog: blog})
         }
     })
+})
+
+// ---------- PUT UPDATE
+app.put('/blogs/:id', async (req, res) => {
+    const {id} = req.params;
+    const blog = await Blog.findByIdAndUpdate(id, {...req.body.blog})
+    res.redirect(`/blogs/${blog._id}`)
+})
+
+// ---------- DELETE
+app.delete('/blogs/:id', async (req, res) => {
+    const {id} = req.params;
+    await Blog.findByIdAndDelete(id);
+    res.redirect('/blogs');
 })
 
 

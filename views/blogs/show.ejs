@@ -12,6 +12,10 @@
             <li>By <%= blog.name %></li>
             <li><%= blog.body %></li>
     </ul>
-    <a href="/blogs/">Go Back</a>
+    <a href="/blogs/<%= blog._id %>/edit"><p>Edit</p></a>
+    <p><form action="/blogs/<%= blog._id %>?_method=delete" method="POST">
+        <button>Delete</button>
+    </form></p>
+    <a href="/blogs/"><p>Go Back</p></a>
 </body>
 </html>
