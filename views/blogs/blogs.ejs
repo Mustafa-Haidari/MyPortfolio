@@ -1,18 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogs</title>
-</head>
-<body>
-    <h1>All blogs</h1>
-    <ul>
-        <% blogs.forEach(blog => { %>
-            <a href="/blogs/<%= blog._id %>"><li><%= blog.name %></li></a>
-        <% }) %>
-    </ul>
-    <a href="/blogs/new"><button>New Blog</button></a>
-</body>
-</html>
+   
+<%- include("../partials/header") %>
+
+
+<section class="blogs section">
+
+    <div class="blogs__container container grid">
+        <h4 class="section__title">Blogs</h4>
+        <span class="section__subtitle">All blogs</span>
+
+        <ul>
+            <% blogs.forEach(blog => { %>
+                <a href="/blogs/<%= blog._id %>"><li><%= blog.name %></li></a>
+            <% }) %>
+        </ul>
+
+        <div class="goback__buttons">
+            <a href="/blogs/new" class="button button--flex">
+                New Blog
+            </a>
+        </div>
+        
+      </div>
+    </div>
+</section>
+
+
+
+<%- include("../partials/footer") %>

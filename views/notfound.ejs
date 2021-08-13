@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include("partials/header") %>
 
-    <!--==================== CSS ====================-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<section class="notfound section">
 
-    <title>Not found</title>
-    <link rel="icon" href="/img/musface.png" />
-</head>
-<body>
-<div class="container" style="padding: 4rem 2rem">
-    <div class="alert alert-info" role="alert">
-        <h4 class="alert-heading">Sorry! Page not found.</h4>
-        <hr>
-        <a href="/"><button class="btn btn-primary">Go back</button></a>
+    <div class="notfound__container container grid">
+        <h4 class="section__title">Sorry! Page not found.</h4>
+
+        <div class="goback__buttons">
+            <a href="/" class="button button--flex">
+                Go Back
+            </a>
+        </div>
+        
       </div>
-</div>
+    </div>
+</section>
     
-</body>
-</html>
+
+<%- include("partials/footer") %>
