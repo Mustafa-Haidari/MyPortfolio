@@ -1,29 +1,34 @@
-   
-<%- include("../partials/header") %>
+   <%- include("../partials/header") %>
 
 
-<section class="blogs section">
+   <section class="blogs section">
 
-    <div class="blogs__container container grid">
-        <h4 class="section__title">Blogs</h4>
-        <span class="section__subtitle">All blogs</span>
+       <div class="blogs__container container grid">
+           <h4 class="section__title">Blogs</h4>
+           <span class="section__subtitle">All blogs</span>
 
-        <ul>
-            <% blogs.forEach(blog => { %>
-                <a href="/blogs/<%= blog._id %>"><li><%= blog.name %></li></a>
-            <% }) %>
-        </ul>
+           <% blogs.forEach(blog => { %>
+           <div class="blog__container flex">
+               <i class="uil uil-diamond blog__icon"></i>
+               <div>
+                   <a href="/blogs/<%= blog._id %>"><h3 class="blog__title"><%= blog.title %> by <%= blog.name %></h3></a>
+                   
+                   <p class="blog__body"><%= blog.body.substring(0,100) %>...</p>
+               </div>
 
-        <div class="goback__buttons">
-            <a href="/blogs/new" class="button button--flex">
-                New Blog
-            </a>
-        </div>
-        
-      </div>
-    </div>
-</section>
+           </div>
+           <% }) %>
+
+           <div class="goback__buttons">
+               <a href="/blogs/new" class="button button--flex">
+                   New Blog
+               </a>
+           </div>
+
+       </div>
+       </div>
+   </section>
 
 
 
-<%- include("../partials/footer") %>
+   <%- include("../partials/footer") %>

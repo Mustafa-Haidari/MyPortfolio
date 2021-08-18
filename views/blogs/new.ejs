@@ -1,27 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/blogs" method="post">
-        <div>
-            <label for="name">name</label>
-            <input type="text" id="name" name="blog[name]">
+<%- include("../partials/header") %>
+
+<section class="section">
+
+    <div class="container grid">
+
+    <form action="/blogs" class="contact__form grid" method="post">
+        <div class="contact__inputs grid">
+            <div class="contact__content">
+                <label for="name" class="contact__label">Name</label>
+                <input type="text" name="blog[name]" class="contact__input" required>
+            </div>
+            <div class="contact__content">
+                <label for="title" class="contact__label">Blog Title</label>
+                <input type="text" name="blog[title]" class="contact__input" required>
+            </div>
         </div>
-        <div>
-        <div>
-            <label for="title">title</label>
-            <input type="text" id="title" name="blog[title]">
+        <div class="contact__content">
+            <label for="message" class="contact__label">Body</label>
+            <textarea name="blog[body]" id="" cols="0" rows="7" class="contact__input" required></textarea>
         </div>
+
         <div>
-            <label for="body">description</label>
-            <textarea type="text" id="body" name="blog[body]" cols="30" rows="10"></textarea>
+            <button type="submit" class="button button--flex">
+                Add Blog
+            </button>
         </div>
-        <button>Add Blog</button>
     </form>
-</body>
-</html>
+
+        </div>
+
+
+    
+</section>
+    <%- include("../partials/footer") %>

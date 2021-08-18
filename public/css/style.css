@@ -161,6 +161,10 @@ img {
     display: grid;
     gap: 1.5rem;
 }
+.flex{
+    display: flex;
+    gap: 1.5rem;
+}
 .header{
     width: 100%;
     position: fixed;
@@ -963,6 +967,31 @@ section.notfound{
 ::-webkit-scrollbar-thumb:hover{
     background-color: var(--text-color-light);
 }
+
+
+/*========== SCROLL BAR ==========*/
+.blog__container{
+    border: 1px solid;
+    background-color: var(--first-color-alt);
+    border-radius: .5rem;
+    color: var(--text-color-light);
+    margin-bottom: var(--mb-2);
+    padding: var(--mb-1);
+}
+.blog__body{
+    color: var(--body-color)
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /*==================== MEDIA QUERIES ====================*/
 /* For small devices */

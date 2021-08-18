@@ -1,21 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogs</title>
-</head>
-<body>
-    <h1>Blog - <%= blog.title %></h1>
-    <ul>
-            <li>By <%= blog.name %></li>
-            <li><%= blog.body %></li>
-    </ul>
-    <a href="/blogs/<%= blog._id %>/edit"><p>Edit</p></a>
-    <p><form action="/blogs/<%= blog._id %>?_method=delete" method="POST">
-        <button>Delete</button>
-    </form></p>
-    <a href="/blogs/"><p>Go Back</p></a>
-</body>
-</html>
+<%- include("../partials/header") %>
+
+
+<section class="blogs section">
+
+
+    <div class="container grid">
+        <a href="/blogs/">
+
+            <p class=""><i class="uil uil-angle-left"></i> Go Back</p>
+        </a>
+        <h1><%= blog.title %></h1>
+        <p>By <%= blog.name %></p>
+        <p><%= blog.body %></p>
+
+        <div class="flex">
+            <a href="/blogs/<%= blog._id %>/edit">
+                <button class="">Edit</button>
+            </a>
+            <form action="/blogs/<%= blog._id %>?_method=delete" method="POST">
+                <button>Delete</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<%- include("../partials/footer") %>
