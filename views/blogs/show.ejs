@@ -1,10 +1,9 @@
-<%- include("../partials/header") %>
-
+<%- include("../partials/blogs-header") %>
 
 <section class="blogs section">
 
 
-    <div class="container grid">
+    <div class="container mt-5">
         <a href="/blogs/">
 
             <p class=""><i class="uil uil-angle-left"></i> Go Back</p>
@@ -14,15 +13,12 @@
         <p><%= blog.body %></p>
 
         <div class="flex">
-            <a href="/blogs/<%= blog._id %>/edit">
-                <button class="">Edit</button>
-            </a>
+            <a class="btn btn-primary" href="/blogs/<%= blog._id %>/edit">Edit</a>
             <form action="/blogs/<%= blog._id %>?_method=delete" method="POST">
-                <button>Delete</button>
+                <button class="btn btn-danger">Delete</button>
             </form>
         </div>
     </div>
 </section>
 
-
-<%- include("../partials/footer") %>
+<%- include("../partials/blogs-footer") %>

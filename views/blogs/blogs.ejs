@@ -1,34 +1,29 @@
-   <%- include("../partials/header") %>
+   <%- include("../partials/blogs-header") %>
 
 
-   <section class="blogs section">
+<main>
+    <div class="container mt-5">
+        <div class="container-fluid alert alert-secondary">
+            <h1>Blogs</h1>
+            <span>This blogs section is a demonstration of CRUD operations linking frontend to the MongoDB backend with basic insert, read, update and delete operations.</span>
+        </div>
 
-       <div class="blogs__container container grid">
-           <h4 class="section__title">Blogs</h4>
-           <span class="section__subtitle">This blogs section is a demonstration of CRUD operations linking frontend to the MongoDB backend with basic insert, read, update and delete operations.</span>
+    <% blogs.forEach(blog => { %>
+        <div class="container-fluid alert alert-success">
+            <a href="/blogs/<%= blog._id %>">
+                <p><%= blog.title %> by <%= blog.name %></p></a>
+            <p><%= blog.body.substring(0,100) %>...</p> 
+        </div>
+        
+    <% }) %>
 
-           <% blogs.forEach(blog => { %>
-           <div class="blog__container flex">
-               <i class="uil uil-diamond blog__icon"></i>
-               <div>
-                   <a href="/blogs/<%= blog._id %>"><h3 class="blog__title"><%= blog.title %> by <%= blog.name %></h3></a>
-                   
-                   <p class="blog__body"><%= blog.body.substring(0,100) %>...</p>
-               </div>
-
-           </div>
-           <% }) %>
-
-           <div class="goback__buttons">
-               <a href="/blogs/new" class="button button--flex">
-                   New Blog
-               </a>
-           </div>
-
-       </div>
-       </div>
-   </section>
+    <a href="/blogs/new" class="btn btn-primary">
+        New Blog
+    </a>
+</div>
+</main>
 
 
 
-   <%- include("../partials/footer") %>
+
+   <%- include("../partials/blogs-footer") %>

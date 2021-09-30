@@ -1,35 +1,29 @@
-<%- include("../partials/header") %>
+<%- include("../partials/blogs-header") %>
 
-<section class="section">
+<div class="container mt-5">
+    
 
-    <div class="container grid">
+    <form action="/blogs" method="POST">
 
-    <form action="/blogs" class="contact__form grid" method="post">
-        <div class="contact__inputs grid">
-            <div class="contact__content">
-                <label for="name" class="contact__label">Name</label>
-                <input type="text" name="blog[name]" class="contact__input" required>
-            </div>
-            <div class="contact__content">
-                <label for="title" class="contact__label">Blog Title</label>
-                <input type="text" name="blog[title]" class="contact__input" required>
-            </div>
-        </div>
-        <div class="contact__content">
-            <label for="message" class="contact__label">Body</label>
-            <textarea name="blog[body]" id="" cols="0" rows="7" class="contact__input" required></textarea>
-        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="blog[name]">
+          </div>
+          
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="blog[title]">
+          </div>
 
-        <div>
-            <button type="submit" class="button button--flex">
-                Add Blog
-            </button>
-        </div>
+          <div class="mb-3">
+            <label for="body" class="form-label">Example textarea</label>
+            <textarea class="form-control" id="body" name="blog[body]" rows="5"></textarea>
+          </div>
+
+        <button class="btn btn-success">Add Blog</button>
+
     </form>
 
-        </div>
+</div>
 
-
-    
-</section>
-    <%- include("../partials/footer") %>
+    <%- include("../partials/blogs-footer") %>

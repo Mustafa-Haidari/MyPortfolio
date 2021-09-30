@@ -1,0 +1,20 @@
+:root {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+
+}
+
+.blog-header{
+    background: #eee;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.btn{
+    display: flex-inline;
+    flex-direction: column;
+}
